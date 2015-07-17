@@ -110,6 +110,7 @@ module.exports = function container_plugin(md, options) {
     // this will prevent lazy continuations from ever going past our end marker
     state.lineMax = nextLine;
 
+    var name = params.trim().replace(/\s/g, "-");
     token        = state.push('container_' + name + '_open', 'div', 1);
     token.markup = markup;
     token.block  = true;
