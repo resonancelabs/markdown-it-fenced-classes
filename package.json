@@ -1,8 +1,7 @@
 {
-  "name": "markdown-it-container",
-  "version": "1.0.0",
+  "name": "markdown-it-fenced-classes",
+  "version": "0.1.0",
   "description": "Plugin to create block-level custom containers for markdown-it markdown parser",
-  "repository": "markdown-it/markdown-it-container",
   "license": "MIT",
   "scripts": {
     "test": "make test"

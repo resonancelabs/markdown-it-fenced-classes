@@ -3,19 +3,13 @@
 'use strict';
 
 
-module.exports = function container_plugin(md, name, options) {
+module.exports = function container_plugin(md, options) {
 
   function validateDefault(params) {
-    return params.trim().split(' ', 2)[0] === name;
+    return true;
   }
 
   function renderDefault(tokens, idx, _options, env, self) {
-
-    // add a class to the opening tag
-    if (tokens[idx].nesting === 1) {
-      tokens[idx].attrPush([ 'class', name ]);
-    }
-
     return self.renderToken(tokens, idx, _options, env, self);
   }
 
@@ -121,6 +115,7 @@ module.exports = function container_plugin(md, name, options) {
     token.block  = true;
     token.info   = params;
     token.map    = [ startLine, nextLine ];
+    token.attrPush([ 'class', params.trim() ]);
 
     state.md.block.tokenize(state, startLine + 1, nextLine);
 
@@ -135,9 +130,9 @@ module.exports = function container_plugin(md, name, options) {
     return true;
   }
 
-  md.block.ruler.before('fence', 'container_' + name, container, {
+  md.block.ruler.before('fence', 'fenced_classes', container, {
     alt: [ 'paragraph', 'reference', 'blockquote', 'list' ]
   });
-  md.renderer.rules['container_' + name + '_open'] = render;
-  md.renderer.rules['container_' + name + '_close'] = render;
+  md.renderer.rules['fenced_classes' + '_open'] = render;
+  md.renderer.rules['fenced_classes' + '_close'] = render;
 };

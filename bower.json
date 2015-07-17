@@ -1,7 +1,6 @@
 {
-  "name": "markdown-it-container",
+  "name": "markdown-it-fenced-classes",
   "main": "dist/markdown-it-container.js",
-  "homepage": "https://github.com/markdown-it/markdown-it-container",
   "description": "Plugin to create block-level custom containers for markdown-it markdown parser",
   "keywords": [
     "markdown-it-plugin",
