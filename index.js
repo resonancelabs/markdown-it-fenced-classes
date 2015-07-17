@@ -50,6 +50,8 @@ module.exports = function container_plugin(md, options) {
     params = state.src.slice(pos, max);
     if (!validate(params)) { return false; }
 
+    var classList = params.trim();
+
     // Since start is found, we can report success here in validation mode
     //
     if (silent) { return true; }
@@ -110,13 +112,13 @@ module.exports = function container_plugin(md, options) {
     // this will prevent lazy continuations from ever going past our end marker
     state.lineMax = nextLine;
 
-    var name = params.trim().replace(/\s/g, "-");
+    var name = classList.replace(/\s/g, "-");
     token        = state.push('container_' + name + '_open', 'div', 1);
     token.markup = markup;
     token.block  = true;
     token.info   = params;
     token.map    = [ startLine, nextLine ];
-    token.attrPush([ 'class', params.trim() ]);
+    token.attrPush([ 'class', classList ]);
 
     state.md.block.tokenize(state, startLine + 1, nextLine);
 
